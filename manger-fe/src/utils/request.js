@@ -6,7 +6,7 @@ import config from './../config'
 import {ElMessage} from 'element-plus'
 import router  from '../router'
 const TOKEN_INVALID  = 'Token认证失败，请重新登录'
-const NETWORK_ERROR = '网络请求异常那个，请稍后重试'
+const NETWORK_ERROR = '网络请求异常，请稍后重试'
 //axios创建示例对象 添加全局配置
 const service = axios.create({
     baseURL: config.baseApi,
@@ -18,13 +18,12 @@ const service = axios.create({
 service.interceptors.request.use((req)=>{
     //TODO 
     const headers = req.headers;
-    if(!headers.Authorization) headers.Authorization = 'Bear Jack'
+    if(!headers.Authorization) headers.Authorization = 'Bearer Jack'
     return req;
 })
 
 //响应拦截
 service.interceptors.response.use((res)=>{
-    //TODO 
     const {code,data,msg} = res.data;
     if(code === 200){
         return data;
@@ -48,12 +47,15 @@ function request(options){
     if(options.method.toLowerCase() === 'get'){
         options.params = options.data;
     }
-    if(config.env === 'prod'){
+    if(typeof options.mock != 'undefined'){
+        config.mock = options.mock
+    }
+    if(config.env === 'production'){
         service.defaults.baseURL = config.baseApi
     }else{
         service.defaults.baseURL = config.mock ? config.mockApi:config.baseApi
     }
-
+    
     return service(options)
 }
 ['get','post','put','delete','patch'].forEach((item)=>{
