@@ -5,12 +5,13 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const log4js = require('./utils/log')
-const index = require('./routes/index')
 const users = require('./routes/users')
-
+const router = require('koa-router')()
 // error handler
 onerror(app)
 
+//加载数据库
+require('./config/db')
 // middlewares
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
@@ -28,9 +29,11 @@ app.use(async (ctx, next) => {
   log4js.info(`post params:${JSON.stringify(ctx.request.body)}`)
 })
 
-// routes
-app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+router.prefix("/api")
+
+router.use(users.routes(),users.allowedMethods())
+
+app.use(router.routes(),router.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
