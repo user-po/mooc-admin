@@ -47,6 +47,7 @@
     <el-dialog
       :title="action == 'create' ? '创建部门' : '编辑部门'"
       v-model="showModal"
+      :before-close="handleClose"
     >
       <el-form
         ref="dialogForm"
@@ -71,7 +72,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="负责人" prop="user">
-          <el-select placeholder="请选择部门负责人" v-model="deptForm.user">
+          <el-select placeholder="请选择部门负责人" v-model="deptForm.user" @change="handleUser">
             <el-option
               v-for="item in userList"
               :key="item.userId"
@@ -168,16 +169,30 @@ export default {
   },
   mounted() {
       this.getDeptList()
+      this.getAllUserList()
   },
   methods: {
+    //联动用户和邮箱
+    handleUser(val){
+        const [userId,userName,userEmail] = val.split('/')
+        Object.assign(this.deptForm,{userId,userName,userEmail})
+    },
     //获取部门列表
     async getDeptList() {
       let list = await this.$api.getDeptList({ ...this.queryForm, ...this.pager });
       this.deptList = list;
     },
+    //弹框关闭
+    handleClose(){
+        this.showModal=false;
+    },
     //表单重置
     handleReset(form) {
       this.$refs[form].resetFields();
+    },
+    //获取用户列表
+    async getAllUserList(){
+        this.userList = await this.$api.getAllUserList()
     },
     //部门编辑
     handleEdit(row) {
