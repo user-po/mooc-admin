@@ -1,0 +1,7 @@
+[2021-10-23T17:16:28.851] [ERROR] error - SyntaxError: Unexpected token } in JSON at position 54
+    at JSON.parse (<anonymous>)
+    at parse (D:\mooc\manger-server\node_modules\co-body\lib\json.js:57:17)
+    at AsyncFunction.module.exports [as json] (D:\mooc\manger-server\node_modules\co-body\lib\json.js:41:20)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async parseBody (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:100:14)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:85:19)

@@ -3,17 +3,17 @@
  */
 const env = import.meta.env.MODE || 'production';
 const EnvConfig = {
-    development:{
-        baseApi:'/api',
-        mockApi:'https://www.fastmock.site/mock/9aef559acd47d7c9bc2dbf4b7a572c68/api'
+    dev:{
+        baseApi:'http://localhost:3000/api',
+        mockApi:'https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api'
     },
     test:{
         baseApi:'/api',
-        mockApi:'https://www.fastmock.site/mock/9aef559acd47d7c9bc2dbf4b7a572c68/api'
+        mockApi:'https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api'
     },
     production:{
         baseApi:'/api',
-        mockApi:'https://www.fastmock.site/mock/9aef559acd47d7c9bc2dbf4b7a572c68/api'
+        mockApi:'https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api'
     }
 }
 export default {

@@ -10,7 +10,7 @@
             <el-input type="password" prefix-icon="el-icon-view" v-model="user.userPwd"/>
          </el-form-item>
          <el-form-item>
-           <el-button type="primary" class="btn-login" @click="login">登录</el-button>
+           <el-button type="primary" class="btn-login" @click="login" :loading="logining">登录</el-button>
          </el-form-item>
        </el-form>
      </div>
@@ -21,9 +21,11 @@
     name:'login',
     data(){
       return {
+        logining:false,
          user:{
            userName:'',
-           userPwd:''
+           userPwd:'',
+         
          },
          rules:{
            userName:[
@@ -41,11 +43,13 @@
     },
     methods: {
       login(){
+        this.logining = true;
          this.$refs.userForm.validate((valid)=>{
              if(valid){
                this.$api.login(this.user).then((res)=>{
+                 this.logining =false;
                    this.$store.commit('saveUserInfo',res)
-                   this.$router.push('/welcome')
+                   this.$router.replace('/welcome')
                })
              }else{
                return false;

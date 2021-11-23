@@ -1,0 +1,22 @@
+[2021-11-20T14:29:13.222] [ERROR] error - ReferenceError: res is not defined
+    at D:\mooc\manger-server\routes\users.js:110:3
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\app.js:49:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
+[2021-11-20T14:37:44.930] [ERROR] error - ReferenceError: res is not defined
+    at D:\mooc\manger-server\routes\users.js:106:3
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at D:\mooc\manger-server\node_modules\koa-router\lib\router.js:346:16
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:36:12
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\lib\router.js:351:31)
+    at dispatch (D:\mooc\manger-server\node_modules\koa-compose\index.js:42:32)
+    at jwt (D:\mooc\manger-server\node_modules\koa-jwt\lib\index.js:73:16)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\app.js:49:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
