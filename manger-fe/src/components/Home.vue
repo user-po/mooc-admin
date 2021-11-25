@@ -110,11 +110,13 @@ export default {
     async getMenuList() {
       try {
         this.menuLoading = true;
-        const menuList = await this.$api.getMenuList();
+        const {menuList,btnActionList} = await this.$api.getPermissionMenuList();
         setTimeout(() => {
           this.menuLoading = false;
         }, 500);
         this.userMenu = menuList;
+        this.$store.commit('saveMenuList',menuList)
+        this.$store.commit('saveActionList',btnActionList)
       } catch (error) {
         console.error(error);
       }

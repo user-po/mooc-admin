@@ -3,6 +3,7 @@
  */
 const log4js = require("./log");
 const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 let transporter = nodemailer.createTransport({
   host: "smtp.qq.com",
   port: 465,
@@ -32,7 +33,7 @@ module.exports = {
    * @returns
    */
   sendMail(mailObj, callback) {
-    const {from, to, subject, text, html} = mailObj;
+    const { from, to, subject, text, html } = mailObj;
     // 发送的配置项
     let mailOptions = {
       from: from || "1186968407@qq.com", // 发送方
@@ -103,4 +104,41 @@ module.exports = {
    * 状态码
    */
   CODE,
+  /**
+   * token解密
+   * @param {string} authorization
+   * @returns {string}
+   */
+  decoded(authorization) {
+    if (authorization) {
+      let token = authorization.split(" ")[1];
+      return jwt.verify(token, "imooc");
+    }
+    return "";
+  },
+  //递归拼接树形列表
+ getTreeMenu(rootList,id,list){
+    
+  for(let i=0;i<rootList.length;++i){
+      let item  = rootList[i];
+      //slice不改变原有对象 快速克隆
+      if(String(item.parentId.slice().pop()) == String(id)){
+          list.push(item._doc)
+      }
+  }
+  list.map(item=>{
+      item.children = [];
+      //二级 三级菜单
+      this.getTreeMenu(rootList,item._id,item.children)
+      if(item.children.length==0){
+          delete item.children;
+      }else if(item.children[0].menuType==2){
+          //快速区分按钮和菜单 用户做权限控制
+          item.action = item.children;
+          
+      }
+  })
+
+  return list;
+}
 };

@@ -72,7 +72,11 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="负责人" prop="user">
-          <el-select placeholder="请选择部门负责人" v-model="deptForm.user" @change="handleUser">
+          <el-select
+            placeholder="请选择部门负责人"
+            v-model="deptForm.user"
+            @change="handleUser"
+          >
             <el-option
               v-for="item in userList"
               :key="item.userId"
@@ -91,15 +95,15 @@
       </el-form>
       <template #footer>
         <span class="dialog-footer">
-          <el-button>取消</el-button>
-          <el-button type="primary">确定</el-button>
+          <el-button @click="handleClose">取消</el-button>
+          <el-button type="primary" @click="handleSubmit">确定</el-button>
         </span>
       </template>
     </el-dialog>
   </div>
 </template>
 <script>
-import utils from '../utils/util'
+import utils from "../utils/util";
 export default {
   name: "dept",
   data() {
@@ -168,48 +172,79 @@ export default {
     };
   },
   mounted() {
-      this.getDeptList()
-      this.getAllUserList()
+    this.getDeptList();
+    this.getAllUserList();
   },
   methods: {
     //联动用户和邮箱
-    handleUser(val){
-        const [userId,userName,userEmail] = val.split('/')
-        Object.assign(this.deptForm,{userId,userName,userEmail})
+    handleUser(val) {
+      const [userId, userName, userEmail] = val.split("/");
+      Object.assign(this.deptForm, { userId, userName, userEmail });
     },
     //获取部门列表
     async getDeptList() {
-      let list = await this.$api.getDeptList({ ...this.queryForm, ...this.pager });
+      let list = await this.$api.getDeptList({
+        ...this.queryForm,
+        ...this.pager,
+      });
       this.deptList = list;
     },
     //弹框关闭
-    handleClose(){
-        this.showModal=false;
+    handleClose() {
+      this.showModal = false;
+      this.handleReset("dialogForm");
     },
     //表单重置
     handleReset(form) {
       this.$refs[form].resetFields();
     },
     //获取用户列表
-    async getAllUserList(){
-        this.userList = await this.$api.getAllUserList()
+    async getAllUserList() {
+      this.userList = await this.$api.getAllUserList();
     },
     //部门编辑
     handleEdit(row) {
-        this.action='edit';
-        this.showModal=true;
+      this.action = "edit";
+      this.showModal = true;
+
+      this.$nextTick(() => {
+    
+        Object.assign(this.deptForm, row, {
+          user: row.userName,
+        });
+        console.log(this.deptForm);
+       
+      });
     },
     //部门删除
-    handleDel(_id) {
-        this.action='delete';
-        this.showModal=true;
+    async handleDel(_id) {
+      this.action = "delete";
+      await this.$api.deptOperate({ _id, action: this.action });
+
+      this.$message.success("操作成功");
+      this.getDeptList();
     },
     //创建部门
-    handleOpen(){
-        this.action='create';
-        this.showModal=true;
-
-    }
+    handleOpen() {
+      this.action = "create";
+      this.showModal = true;
+    },
+    //弹框提交
+    handleSubmit() {
+      this.$refs.dialogForm.validate(async (valid) => {
+        if (valid) {
+            
+          let params = { ...this.deptForm, action: this.action };
+          delete params.user;
+          let res = await this.$api.deptOperate(params);
+          if (res) {
+            this.$message.success("操作成功");
+            this.handleClose();
+            this.getDeptList();
+          }
+        }
+      });
+    },
   },
 };
 </script>

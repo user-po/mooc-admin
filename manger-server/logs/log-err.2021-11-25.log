@@ -1,0 +1,30 @@
+[2021-11-25T22:36:56.781] [ERROR] error - ReferenceError: Cannot access 'roleList' before initialization
+    at getMenuList (D:\mooc\manger-server\routes\users.js:187:47)
+    at D:\mooc\manger-server\routes\users.js:173:25
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at D:\mooc\manger-server\node_modules\koa-router\lib\router.js:346:16
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:36:12
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\lib\router.js:351:31)
+    at dispatch (D:\mooc\manger-server\node_modules\koa-compose\index.js:42:32)
+    at jwt (D:\mooc\manger-server\node_modules\koa-jwt\lib\index.js:73:16)
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
+[2021-11-25T22:37:00.115] [ERROR] error - ReferenceError: Cannot access 'roleList' before initialization
+    at getMenuList (D:\mooc\manger-server\routes\users.js:187:47)
+    at D:\mooc\manger-server\routes\users.js:173:25
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at D:\mooc\manger-server\node_modules\koa-router\lib\router.js:346:16
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:36:12
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\lib\router.js:351:31)
+    at dispatch (D:\mooc\manger-server\node_modules\koa-compose\index.js:42:32)
+    at jwt (D:\mooc\manger-server\node_modules\koa-jwt\lib\index.js:73:16)
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)

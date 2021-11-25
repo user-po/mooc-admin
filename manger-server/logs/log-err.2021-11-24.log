@@ -1,0 +1,48 @@
+[2021-11-24T22:04:08.153] [ERROR] error - ReferenceError: ctx is not defined
+    at D:\mooc\manger-server\routes\depts.js:41:40
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at D:\mooc\manger-server\node_modules\koa-router\lib\router.js:346:16
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at allowedMethods (D:\mooc\manger-server\node_modules\koa-router\lib\router.js:407:12)
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at D:\mooc\manger-server\node_modules\koa-router\lib\router.js:346:16
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at allowedMethods (D:\mooc\manger-server\node_modules\koa-router\lib\router.js:407:12)
+    at dispatch (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (D:\mooc\manger-server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at D:\mooc\manger-server\node_modules\koa-router\lib\router.js:346:16
+[2021-11-24T22:16:30.473] [ERROR] error - TypeError: item.parentId.slice.pop is not a function
+    at getTreeDept (D:\mooc\manger-server\routes\depts.js:26:41)
+    at D:\mooc\manger-server\routes\depts.js:17:24
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
+[2021-11-24T22:16:38.021] [ERROR] error - TypeError: item.parentId.slice.pop is not a function
+    at getTreeDept (D:\mooc\manger-server\routes\depts.js:26:41)
+    at D:\mooc\manger-server\routes\depts.js:17:24
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
+[2021-11-24T22:16:56.279] [ERROR] error - TypeError: item.parentId.slice.pop is not a function
+    at getTreeDept (D:\mooc\manger-server\routes\depts.js:26:41)
+    at D:\mooc\manger-server\routes\depts.js:17:24
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
+[2021-11-24T22:20:55.184] [ERROR] error - ReferenceError: treeList is not defined
+    at D:\mooc\manger-server\routes\depts.js:19:21
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)

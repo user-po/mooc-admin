@@ -3,6 +3,8 @@
  */
 const router = require("koa-router")();
 const User = require("./../models/userShema");
+const Menu = require("./../models/menuSchema");
+const Role = require("./../models/roleSchema");
 const util = require("./../utils/util");
 const jwt = require("jsonwebtoken");
 router.prefix("/users");
@@ -19,7 +21,7 @@ router.post("/login", async (ctx) => {
     const res = await User.findOne(
       {
         userName,
-        userPwd,
+        userPwd:md5(userPwd),
       },
       "userId userName userEmail state role deptId roleList"
     );
@@ -43,7 +45,15 @@ router.post("/login", async (ctx) => {
     ctx.body = util.fail(error.msg);
   }
 });
-
+// 获取全量用户列表
+router.get('/all/list', async (ctx) => {
+  try {
+    const list = await User.find({state : {$ne : 2}}, "userId userName userEmail")
+    ctx.body = util.success(list)
+  } catch (error) {
+    ctx.body = util.fail(error.stack)
+  }
+})
 //用户查询
 router.get("/list", async (ctx) => {
   const { userId, userName, state } = ctx.request.query;
@@ -155,4 +165,60 @@ router.post("/operate", async (ctx) => {
     }
   }
 });
+//获取用户对应的权限菜单
+router.get("/getPermissionList",async (ctx)=>{
+   let authorization =  ctx.request.headers.authorization;
+   let {data} = util.decoded(authorization)
+
+   let menuList = await getMenuList(data.role,data.roleList)
+   let btnActionList = getButtonActionList(JSON.parse(JSON.stringify(menuList)))
+   ctx.body = util.success({menuList,btnActionList})
+   
+})
+
+async function getMenuList(userRole,keysList){
+  let rootList = [];
+  //管理员
+  if(userRole == 0){
+    rootList =   await Menu.find({})||[]
+  }else{
+    //根据用户拥有的角色 获取权限列表
+    //先查找用户对应的角色有哪些
+    let roleList =  await Role.find({_id:{$in:keysList}})
+    let permissionList = [];
+    roleList.map(role=>{
+      //选中的按钮和父菜单有哪些
+      let {checkedKeys,halfCheckedKeys} = role.permissionList;
+      permissionList = permissionList.concat([...checkedKeys,...halfCheckedKeys])
+
+    })
+    //去重
+    permissionList = [...new Set(permissionList)]
+    //找到在权限列表里面的菜单 权限列表里面其实是菜单的id
+    rootList = await Menu.find({_id:{$in:permissionList}})
+  }
+
+  return util.getTreeMenu(rootList,null,[])
+}
+
+function getButtonActionList(list){
+  const btnActionList = [];
+  const deep = (arr)=>{
+      while(arr.length){
+        let item = arr.pop()
+        //有按钮的菜单
+        if(item.action){
+          item.action.map(action=>{
+            btnActionList.push(action.menuCode)
+          })
+        }
+        //没有按钮有子数组 假设一级菜单 则继续递归查找
+        if(item.children && !item.action){
+           deep(item.children)
+        }
+      }
+  }
+  deep(list)
+  return btnActionList;
+}
 module.exports = router;

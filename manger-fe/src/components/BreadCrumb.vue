@@ -16,5 +16,8 @@ export default {
       return this.$route.matched;
     },
   },
+  mounted(){
+    console.log(this.breadList);
+  }
 };
 </script>
