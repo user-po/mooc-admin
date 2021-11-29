@@ -18,6 +18,7 @@ app.directive('has',{
         let hasPermission = actionList.includes(value);
         if(!hasPermission){
             el.style = "display:none";
+            //宏任务
             setTimeout(()=>{
                  el.parentNode.removeChild(el);
             },0)
