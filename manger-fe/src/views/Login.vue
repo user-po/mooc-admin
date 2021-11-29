@@ -81,7 +81,7 @@ export default {
           routes.map((route) => {
             let url = `./../views/${route.component}.vue`;
             route.component = () => import(/* @vite-ignore */url);
-            this.router.addRoute("home", route);
+            this.$router.addRoute("home", route);
           });
         } catch (error) {}
       }
