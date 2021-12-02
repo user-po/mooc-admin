@@ -1,0 +1,26 @@
+[2021-11-30T22:40:31.598] [ERROR] error - TypeError: Cannot read property 'slice' of null
+    at Object.getTreeMenu (D:\mooc\manger-server\utils\util.js:125:31)
+    at D:\mooc\manger-server\routes\menus.js:18:33
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
+[2021-11-30T22:40:47.750] [ERROR] error - TypeError: Cannot read property 'slice' of null
+    at Object.getTreeMenu (D:\mooc\manger-server\utils\util.js:125:31)
+    at getMenuList (D:\mooc\manger-server\routes\users.js:201:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\routes\users.js:173:19
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)
+[2021-11-30T22:40:53.244] [ERROR] error - TypeError: Cannot read property 'slice' of null
+    at Object.getTreeMenu (D:\mooc\manger-server\utils\util.js:125:31)
+    at getMenuList (D:\mooc\manger-server\routes\users.js:201:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async D:\mooc\manger-server\routes\users.js:173:19
+    at async D:\mooc\manger-server\app.js:52:3
+    at async serve (D:\mooc\manger-server\node_modules\koa-static\index.js:53:9)
+    at async bodyParser (D:\mooc\manger-server\node_modules\koa-bodyparser\index.js:95:5)
+    at async cors (D:\mooc\manger-server\node_modules\koa2-cors\dist\index.js:91:9)

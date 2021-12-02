@@ -18,6 +18,7 @@
         for (let k in o) {
             if (new RegExp(`(${k})`).test(fmt)) {
                 const val = o[k] + '';
+                //RegExp.$1 mm/dd/ss/hh
                 fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? val : ('00' + val).substr(val.length));
             }
         }

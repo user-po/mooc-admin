@@ -54,6 +54,7 @@ async function loadAsyncRoutes() {
         try {
             const { menuList } = await API.getPermissionMenuList()
             let routes = utils.generateRoute(menuList)
+            
             routes.map(route => {
                 let url = `./../views/${route.component}.vue`
                 route.component = () => import(/* @vite-ignore */url);

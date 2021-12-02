@@ -26,8 +26,19 @@ router.post("/operate", async (ctx) => {
 
   try {
     if (action == "add") {
-      
       res = await  Menu.create(params);
+    
+      //创建二级菜单后直接创建一个按钮
+      if(params.component){
+        await Menu.create({
+          action:"add",
+          menuCode:`${params.path.split("/")[2]}-query`,
+          menuName:"查看",
+          menuState:1,
+          menuType:2,
+          parentId:[...params.parentId,res._id]
+        })
+      }
       
       info = "创建成功";
     } else if (action == "edit") {

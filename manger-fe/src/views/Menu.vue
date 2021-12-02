@@ -60,11 +60,11 @@
       >
         <el-form-item label="父级菜单" prop="parentId">
           <el-cascader
-          placeholder="请选择父级菜单"
-            v-model="menuForm.parentId"
-            :options="menuList"
-            :props="{ checkStrictly: true, value: '_id', label: 'menuName' }"
-            clearable
+              placeholder="请选择父级菜单"
+              v-model="menuForm.parentId"
+              :options="menuList"
+              :props="{ checkStrictly: true, value: '_id', label: 'menuName' }"
+              clearable
           />
           <span>不选，则直接创建一级菜单</span>
         </el-form-item>

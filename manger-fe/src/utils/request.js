@@ -41,7 +41,7 @@ service.interceptors.response.use((res)=>{
         ElMessage.error(TOKEN_INVALID)
         setTimeout(()=>{
             router.replace('/login')
-        },1500)
+        },500)
         return Promise.reject(TOKEN_INVALID)
     }else{
         ElMessage.error(msg || NETWORK_ERROR)
